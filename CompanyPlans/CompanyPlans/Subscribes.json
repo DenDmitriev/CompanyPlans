@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Standard",
+        "price": 0,
+        "button": "Start",
+        "services": [
+            {
+                "isEnable": true,
+                "description": "One account - for one business point"
+            },
+            {
+                "isEnable": true,
+                "description": "Basic statistics"
+            },
+            {
+                "isEnable": false,
+                "description": "Ability to create multiple accounts - for multiple business prints"
+            },
+            {
+                "isEnable": false,
+                "description": "Detailed analytics for account, products and employees"
+            },
+            {
+                "isEnable": false,
+                "description": "Priority 24/7 support"
+            },
+            {
+                "isEnable": false,
+                "description": "Debit card"
+            }
+        ]
+    },
+    {
+        "name": "Premium",
+        "price": 30,
+        "button": "Subscribe to premium",
+        "services": [
+            {
+                "isEnable": true,
+                "description": "Ability to create multiple accounts - for multiple business points"
+            },
+            {
+                "isEnable": true,
+                "description": "Detailed analytics for account, products, and employees"
+            },
+            {
+                "isEnable": true,
+                "description": "Priority 24/7 support"
+            },
+            {
+                "isEnable": true,
+                "description": "Debit card"
+            }
+        ]
+    },
+]
