@@ -1,0 +1,71 @@
+{
+    "subscribes":
+    [
+        {
+            "plan": "Standard",
+            "price": 0,
+            "button": "Start",
+            "services": [
+                {
+                    "isEnable": true,
+                    "isEditable": true,
+                    "description": "One account - for one business point"
+                },
+                {
+                    "isEnable": true,
+                    "isEditable": true,
+                    "description": "Basic statistics"
+                },
+                {
+                    "isEnable": false,
+                    "isEditable": false,
+                    "description": "Ability to create multiple accounts - for multiple business prints"
+                },
+                {
+                    "isEnable": false,
+                    "isEditable": false,
+                    "description": "Detailed analytics for account, products and employees"
+                },
+                {
+                    "isEnable": false,
+                    "isEditable": false,
+                    "description": "Priority 24/7 support"
+                },
+                {
+                    "isEnable": false,
+                    "isEditable": false,
+                    "description": "Debit card"
+                }
+            ],
+            "description": "For individuals just getting started with Company"
+        },
+        {
+            "plan": "Premium",
+            "price": 30,
+            "button": "Subscribe to premium",
+            "services": [
+                {
+                    "isEnable": true,
+                    "isEditable": true,
+                    "description": "Ability to create multiple accounts - for multiple business points"
+                },
+                {
+                    "isEnable": true,
+                    "isEditable": true,
+                    "description": "Detailed analytics for account, products, and employees"
+                },
+                {
+                    "isEnable": true,
+                    "isEditable": true,
+                    "description": "Priority 24/7 support"
+                },
+                {
+                    "isEnable": true,
+                    "isEditable": true,
+                    "description": "Debit card"
+                }
+            ],
+            "description": "For individuals looking to amplify their productivity"
+        },
+    ]
+}
