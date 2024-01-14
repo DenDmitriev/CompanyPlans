@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ServicesTogglesView: View {
     let plan: PlanSubscribe
-    @State var services: [Subscribe.Service]
+    @Binding var services: [Subscribe.Service]
     
     var body: some View {
         VStack(alignment: .leading, spacing: AppGrid.pt10) {
@@ -46,5 +46,5 @@ struct ServicesTogglesView: View {
 }
 
 #Preview {
-    ServicesTogglesView(plan: .standard, services: Subscribe.placeholder.services)
+    ServicesTogglesView(plan: .standard, services: .constant(Subscribe.placeholder.services))
 }

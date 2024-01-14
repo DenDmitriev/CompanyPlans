@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlanItem: View {
     @EnvironmentObject var viewModel: PlansViewModel
-    @State var subscribe: Subscribe
+    @Binding var subscribe: Subscribe
     @Binding var isShowDetail: Bool
     @Binding var isAppeared: Bool
     let animation: Namespace.ID
@@ -47,7 +47,7 @@ struct PlanItem: View {
             .matchedGeometryEffect(id: AnimationId.header(subscribe.id.rawValue), in: animation)
 
             // Services
-            ServicesTogglesView(plan: subscribe.plan, services: subscribe.services)
+            ServicesTogglesView(plan: subscribe.plan, services: $subscribe.services)
                 .matchedGeometryEffect(id: AnimationId.toggles(subscribe.id.rawValue), in: animation)
                 .padding(AppGrid.pt12)
             
@@ -97,6 +97,6 @@ struct PlanItem: View {
 #Preview {
     @Namespace var animation
     
-    return PlanItem(subscribe: .placeholder, isShowDetail: .constant(false), isAppeared: .constant(false), animation: animation)
+    return PlanItem(subscribe: .constant(.placeholder), isShowDetail: .constant(false), isAppeared: .constant(false), animation: animation)
         .environmentObject(PlansViewModel())
 }

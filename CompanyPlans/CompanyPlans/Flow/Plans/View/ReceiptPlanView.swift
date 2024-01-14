@@ -27,7 +27,6 @@ struct ReceiptPlanView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppGrid.pt12)
         }
-        .padding()
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text("Receipt")

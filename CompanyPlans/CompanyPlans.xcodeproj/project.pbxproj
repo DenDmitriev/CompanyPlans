@@ -10,6 +10,7 @@
 		9520171F2B53A9A70022AF2B /* ServicesTogglesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9520171E2B53A9A70022AF2B /* ServicesTogglesView.swift */; };
 		952017222B53ADAF0022AF2B /* ServiceCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952017212B53ADAF0022AF2B /* ServiceCommentView.swift */; };
 		952017252B53D17C0022AF2B /* PlansRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952017242B53D17C0022AF2B /* PlansRouter.swift */; };
+		952017272B542A650022AF2B /* SubscribesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952017262B542A650022AF2B /* SubscribesList.swift */; };
 		952D24F22B51CC4300F083C6 /* Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952D24F12B51CC4300F083C6 /* Subscribe.swift */; };
 		952D24F42B51CF8F00F083C6 /* Subscribes.json in Resources */ = {isa = PBXBuildFile; fileRef = 952D24F32B51CF8F00F083C6 /* Subscribes.json */; };
 		952D24F62B5252B900F083C6 /* ReceiptPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952D24F52B5252B900F083C6 /* ReceiptPlanView.swift */; };
@@ -38,6 +39,7 @@
 		9520171E2B53A9A70022AF2B /* ServicesTogglesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesTogglesView.swift; sourceTree = "<group>"; };
 		952017212B53ADAF0022AF2B /* ServiceCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCommentView.swift; sourceTree = "<group>"; };
 		952017242B53D17C0022AF2B /* PlansRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlansRouter.swift; sourceTree = "<group>"; };
+		952017262B542A650022AF2B /* SubscribesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribesList.swift; sourceTree = "<group>"; };
 		952D24F12B51CC4300F083C6 /* Subscribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscribe.swift; sourceTree = "<group>"; };
 		952D24F32B51CF8F00F083C6 /* Subscribes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Subscribes.json; sourceTree = "<group>"; };
 		952D24F52B5252B900F083C6 /* ReceiptPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPlanView.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				952D250E2B52DA1F00F083C6 /* PlansViewModel.swift */,
+				952017262B542A650022AF2B /* SubscribesList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				952D250F2B52DA1F00F083C6 /* PlansViewModel.swift in Sources */,
 				952D24FB2B52532200F083C6 /* PlansView.swift in Sources */,
 				952D25192B52FBD900F083C6 /* PlanItemDetail.swift in Sources */,
+				952017272B542A650022AF2B /* SubscribesList.swift in Sources */,
 				952D25132B52E4EF00F083C6 /* PlanSubscribe.swift in Sources */,
 				952D25092B52B12C00F083C6 /* AppButtonStyle.swift in Sources */,
 				952D25112B52DBE600F083C6 /* PlansError.swift in Sources */,

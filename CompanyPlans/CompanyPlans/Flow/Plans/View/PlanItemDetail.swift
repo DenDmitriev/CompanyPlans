@@ -56,7 +56,7 @@ struct PlanItemDetail: View {
                 .matchedGeometryEffect(id: AnimationId.header(subscribe.id.rawValue), in: animation)
                 
                 // Services
-                ServicesTogglesView(plan: subscribe.plan, services: subscribe.services)
+                ServicesTogglesView(plan: subscribe.plan, services: $subscribe.services)
                     .matchedGeometryEffect(id: AnimationId.toggles(subscribe.id.rawValue), in: animation, anchor: .center)
                     .padding(AppGrid.pt12)
                     .padding(.horizontal, AppGrid.pt12)

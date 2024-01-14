@@ -10,9 +10,9 @@ import SwiftUI
 struct PlansView: View {
     
     @StateObject var viewModel: PlansViewModel
-    @State var subscribes: [Subscribe]?
+    @ObservedObject var subscribeList: SubscribeList
     @State private var isShowDetail: Bool = false
-    @State private var selectedItem: Subscribe?
+    @State private var selectedIndex: Int?
     /// Значение `isShowDetail` уже после появления
     @State private var isAppeared = false
     static private let header = "Sign up for a subscription to access all the app's features"
@@ -20,33 +20,40 @@ struct PlansView: View {
     @State private var isAnimating = false
     @Namespace var animation
     
+    init(viewModel: PlansViewModel, subscribeList: SubscribeList = .init(subscribes: [])) {
+        self._viewModel = .init(wrappedValue: viewModel)
+        self.subscribeList = subscribeList
+    }
+    
     var body: some View {
         NavigationStack(path: $viewModel.path) {
             ScrollView {
                 VStack(spacing: AppGrid.pt12) {
-                    if let subscribes {
+                    if !subscribeList.subscribes.isEmpty {
                         Text(Self.header)
                             .font(.appHeader)
                             .padding(.horizontal, AppGrid.pt12)
-                            .padding(.top, AppGrid.pt22)
+                            .padding(.top, AppGrid.pt24)
                         
-                            ForEach(subscribes) { subscribe in
-                                PlanItem(
-                                    subscribe: subscribe,
-                                    isShowDetail: $isShowDetail,
-                                    isAppeared: $isAppeared,
-                                    animation: animation
-                                )
-                                .onTapGesture {
-                                    selectedItem = subscribe
-                                    withAnimation {
-                                        isShowDetail.toggle()
-                                    }
+                        Spacer()
+                            .frame(height: AppGrid.pt4)
+                        
+                        ForEach(subscribeList.subscribes.indices, id: \.self) { index in
+                            PlanItem(
+                                subscribe: $subscribeList.subscribes[index],
+                                isShowDetail: $isShowDetail,
+                                isAppeared: $isAppeared,
+                                animation: animation
+                            )
+                            .onTapGesture {
+                                selectedIndex = index
+                                withAnimation {
+                                    isShowDetail.toggle()
                                 }
-                                .shadow(color: .black.opacity(0.05), radius: AppGrid.pt16, y: AppGrid.pt4)
-                                .padding(.horizontal, AppGrid.pt12)
                             }
-//                            .background(.pink)
+                            .shadow(color: .black.opacity(0.05), radius: AppGrid.pt16, y: AppGrid.pt4)
+                            .padding([.horizontal, .bottom], AppGrid.pt12)
+                        }
                     } else {
                         placeholder
                     }
@@ -68,7 +75,9 @@ struct PlansView: View {
             viewModel.fetchPlans()
         }
         .onReceive(viewModel.$subscribes) { subscribes in
-            self.subscribes = subscribes
+            if let subscribes {
+                self.subscribeList.subscribes = subscribes
+            }
         }
         .alert(isPresented: $viewModel.hasError, error: viewModel.error) { error in
             Button("Ok", action: { print("error alert dismiss") })
@@ -78,9 +87,9 @@ struct PlansView: View {
             }
         }
         .overlay {
-            if isShowDetail {
+            if isShowDetail, let selectedIndex {
                 PlanItemDetail(
-                    subscribe: selectedSubscribe(),
+                    subscribe: $subscribeList.subscribes[selectedIndex],
                     isShowDetail: $isShowDetail,
                     isAppeared: $isAppeared,
                     animation: animation
@@ -98,17 +107,17 @@ struct PlansView: View {
             .padding()
     }
     
-    private func selectedSubscribe() -> Binding<Subscribe> {
-        Binding<Subscribe>(get: {
-            selectedItem ?? .placeholder
-        }) { subscribe in
-            if let selectedItem, let index = subscribes?.firstIndex(where: { $0.id == selectedItem.id }) {
-                subscribes?[index] = selectedItem
-            }
-        }
-    }
+//    private func selectedSubscribe() -> Binding<Subscribe> {
+//        Binding<Subscribe>(get: {
+//            selectedItem ?? .placeholder
+//        }) { subscribe in
+//            if let selectedItem, let index = subscribes?.firstIndex(where: { $0.id == selectedItem.id }) {
+//                subscribes?[index] = selectedItem
+//            }
+//        }
+//    }
 }
 
 #Preview {
-    PlansView(viewModel: PlansViewModel())
+    PlansView(viewModel: PlansViewModel(), subscribeList: .init(subscribes: []))
 }
