@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AnimationId {
+final class AnimationId {
     static func image(_ id: String) -> String { "\(id) image" }
     static func title(_ id: String) -> String { "\(id) title" }
     static func price(_ id: String) -> String { "\(id) price" }

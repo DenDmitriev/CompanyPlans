@@ -27,48 +27,59 @@ struct PlansView: View {
     
     var body: some View {
         NavigationStack(path: $viewModel.path) {
-            ScrollView {
-                VStack(spacing: AppGrid.pt12) {
-                    if !subscribeList.subscribes.isEmpty {
-                        Text(Self.header)
-                            .font(.appHeader)
-                            .padding(.horizontal, AppGrid.pt12)
-                            .padding(.top, AppGrid.pt24)
-                        
-                        Spacer()
-                            .frame(height: AppGrid.pt4)
-                        
-                        ForEach(subscribeList.subscribes.indices, id: \.self) { index in
-                            PlanItem(
-                                subscribe: $subscribeList.subscribes[index],
-                                isShowDetail: $isShowDetail,
-                                isAppeared: $isAppeared,
-                                animation: animation
-                            )
-                            .onTapGesture {
-                                selectedIndex = index
-                                withAnimation {
-                                    isShowDetail.toggle()
+            Group {
+                if isShowDetail, let selectedIndex {
+                    PlanItemDetail(
+                        subscribe: $subscribeList.subscribes[selectedIndex],
+                        isShowDetail: $isShowDetail,
+                        isAppeared: $isAppeared,
+                        animation: animation
+                    )
+                } else {
+                    ScrollView {
+                        VStack(spacing: AppGrid.pt12) {
+                            if !subscribeList.subscribes.isEmpty {
+                                Text(Self.header)
+                                    .font(.appHeader)
+                                    .padding(.horizontal, AppGrid.pt12)
+                                    .padding(.top, AppGrid.pt24)
+                                
+                                Spacer()
+                                    .frame(height: AppGrid.pt4)
+                                
+                                ForEach(subscribeList.subscribes.indices, id: \.self) { index in
+                                    PlanItem(
+                                        subscribe: $subscribeList.subscribes[index],
+                                        isShowDetail: $isShowDetail,
+                                        isAppeared: $isAppeared,
+                                        animation: animation
+                                    )
+                                    .onTapGesture {
+                                        selectedIndex = index
+                                        withAnimation {
+                                            isShowDetail.toggle()
+                                        }
+                                    }
+                                    .shadow(color: .black.opacity(0.05), radius: AppGrid.pt16, y: AppGrid.pt4)
+                                    .padding([.horizontal, .bottom], AppGrid.pt12)
                                 }
+                            } else {
+                                placeholder
                             }
-                            .shadow(color: .black.opacity(0.05), radius: AppGrid.pt16, y: AppGrid.pt4)
-                            .padding([.horizontal, .bottom], AppGrid.pt12)
                         }
-                    } else {
-                        placeholder
                     }
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("Company Plans")
-                        .font(.appTitle3)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text("Company Plans")
+                            .font(.appTitle3)
+                    }
                 }
-            }
-            .navigationDestination(for: PlansRouter.self) { route in
-                viewModel.build(route: route)
-            }
+                .navigationDestination(for: PlansRouter.self) { route in
+                    viewModel.build(route: route)
+                }
         }
         .background(.backgroundTwo)
         .onAppear {
@@ -86,16 +97,6 @@ struct PlansView: View {
                 Text(message)
             }
         }
-        .overlay {
-            if isShowDetail, let selectedIndex {
-                PlanItemDetail(
-                    subscribe: $subscribeList.subscribes[selectedIndex],
-                    isShowDetail: $isShowDetail,
-                    isAppeared: $isAppeared,
-                    animation: animation
-                )
-            }
-        }
         .environmentObject(viewModel)
     }
     
@@ -106,16 +107,6 @@ struct PlansView: View {
             .font(.appTitle)
             .padding()
     }
-    
-//    private func selectedSubscribe() -> Binding<Subscribe> {
-//        Binding<Subscribe>(get: {
-//            selectedItem ?? .placeholder
-//        }) { subscribe in
-//            if let selectedItem, let index = subscribes?.firstIndex(where: { $0.id == selectedItem.id }) {
-//                subscribes?[index] = selectedItem
-//            }
-//        }
-//    }
 }
 
 #Preview {
