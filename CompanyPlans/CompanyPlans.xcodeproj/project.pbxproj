@@ -100,7 +100,6 @@
 				952D25122B52E4EF00F083C6 /* PlanSubscribe.swift */,
 				952D24FC2B5282FD00F083C6 /* Service.swift */,
 				952D25102B52DBE600F083C6 /* PlansError.swift */,
-				952017282B5433740022AF2B /* AnimationId.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -169,6 +168,7 @@
 			children = (
 				952D250E2B52DA1F00F083C6 /* PlansViewModel.swift */,
 				952017262B542A650022AF2B /* SubscribesList.swift */,
+				952017282B5433740022AF2B /* AnimationId.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

@@ -98,7 +98,7 @@ struct PlanItemDetail: View {
                 animateText = false
             }
         }
-        .statusBarHidden(true)
+        .toolbar(.hidden)
         .ignoresSafeArea()
         .overlay(alignment: .topTrailing) {
             Button(action: {
